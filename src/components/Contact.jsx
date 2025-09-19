@@ -19,7 +19,7 @@ export default function Contact() {
       </p>
       <div className='flex justify-center gap-6 items-center flex-wrap mt-4'>
         <a
-          href="tel:+919876543210"
+          href="tel:+919342217586"
           className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white flex items-center gap-1"
         >
           <Phone className="w-6 h-6" />
