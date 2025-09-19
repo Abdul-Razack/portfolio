@@ -4,7 +4,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import BackToTop from './components/BackToTop';
-import About from './components/aboutme';
+import WorkExperience  from './components/aboutme';
 export default function App() {
   return (
     <div className="bg-white dark:bg-black min-h-screen transition-colors duration-300">
@@ -13,7 +13,7 @@ export default function App() {
         <Hero />
         <Skills />
         <Projects />
-        <About />
+        <WorkExperience />
         <Contact />
       </main>
       <BackToTop />
