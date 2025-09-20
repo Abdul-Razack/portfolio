@@ -2,15 +2,16 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
+
     <motion.section
-      id="hero"
+       
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6 }}
-      className="text-center px-4 py-16"
+      className="text-center px-4 pt-10"
     >
       {/* Profile Photo */}
-      <div className="mx-auto mb-6 w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-gray-500 -mt-12">
+      <div id="hero"  className="mx-auto mb-6 w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-gray-500 -mt-12">
         <img
           src="/profile.jpg" // place your image in the public folder
           alt="Abdul Razack"

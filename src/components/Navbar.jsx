@@ -7,7 +7,9 @@ const links = [
   { name: 'Home', href: '#hero' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Work Experience', href: '#wxp' },
   { name: 'Contact', href: '#contact' },
+  
 ];
 
 export default function Navbar() {
@@ -44,9 +46,9 @@ export default function Navbar() {
        
 
         {/* Right: Desktop links and theme button */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 justify-end">
           {/* Desktop links */}
-          <ul className="hidden md:flex gap-6 text-gray-700 dark:text-gray-300 font-medium">
+          <ul className="hidden md:flex gap-6 text-gray-700 dark:text-gray-300 font-medium ">
             {links.map((link) => (
               <li key={link.href}>
                 <a
@@ -83,7 +85,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white dark:bg-black w-full shadow-md">
+        <div className="md:hidden bg-white dark:bg-black w-full ml-auto shadow-md">
           <ul className="flex flex-col items-center gap-4 py-4 text-gray-700 dark:text-gray-300 font-medium">
             {links
               .filter((link) => link.name !== 'Projects') // Projects already in center
