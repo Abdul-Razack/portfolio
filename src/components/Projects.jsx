@@ -88,7 +88,7 @@ export default function Projects() {
         {showLeft && (
           <button
             onClick={() => scrollSlider("prev")}
-            className="absolute left-1 sm:-left-5 top-1/2 -translate-y-1/2 
+            className="absolute max-sm:left-0 sm:-left-7 top-1/2 -translate-y-1/2 
                        bg-gray-200 dark:bg-gray-700 p-1 
                        rounded-full z-10 hover:scale-110 transition 
                        shadow-md touch-manipulation"
@@ -143,7 +143,7 @@ export default function Projects() {
         {/* Right Button - always visible */}
         <button
           onClick={() => scrollSlider("next")}
-          className="absolute right-2 sm:-right-5 top-1/2 -translate-y-1/2 
+          className="absolute max-sm:right-0 sm:-right-7 top-1/2 -translate-y-1/2 
                      bg-gray-200 dark:bg-gray-700 p-1 
                      rounded-full z-10 hover:scale-110 transition 
                      shadow-md touch-manipulation"
