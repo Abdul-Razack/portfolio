@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
+import { Download, ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
 import pdf from "../assets/ABDUL RAZACK A Resume.pdf";
 import workImage1 from "../assets/avi.png";
 import workImage2 from "../assets/avi2.png";
@@ -8,6 +9,31 @@ import workImage3 from "../assets/avi3.png";
 const workImages = [workImage1, workImage2, workImage3];
 
 export default function WorkExperience() {
+  const sliderRef = useRef(null);
+  const [showLeft, setShowLeft] = useState(false);
+
+  const scrollSlider = (dir) => {
+    const container = sliderRef.current;
+    if (!container) return;
+    const scrollAmount = container.clientWidth * 0.9; // slide almost one view width
+    container.scrollBy({
+      left: dir === "next" ? scrollAmount : -scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    const container = sliderRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      setShowLeft(container.scrollLeft > 10); // Show left button after slight scroll
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <motion.section
       id="experience"
@@ -54,19 +80,49 @@ export default function WorkExperience() {
           </a>
         </div>
 
-        {/* Horizontal Image Slider */}
-  <div className="md:w-3/5 flex overflow-x-auto gap-4 scrollbar-hide snap-x snap-mandatory h-80 shadow-lg">
-  {workImages.map((img, index) => (
-    <img
-      key={index}
-      src={img}
-      alt={`Work Experience ${index + 1}`}
-      className="h-full w-auto object-contain rounded-lg shadow-lg flex-shrink-0 snap-start"
-    />
-  ))}
-</div>
+        {/* Image Slider Wrapper */}
+        <div className="relative md:w-3/5">
+          {/* Left Button - shown only after scrolling */}
+          {showLeft && (
+            <button
+              onClick={() => scrollSlider("prev")}
+              className="absolute left-0 top-1/2 -translate-y-1/2 
+                         bg-gray-200 dark:bg-gray-700 p-1 rounded-full z-10 
+                         hover:scale-110 transition shadow-md"
+              aria-label="Previous"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+          )}
 
+          {/* Slider */}
+          <div
+            ref={sliderRef}
+            className="flex overflow-x-auto gap-4 scrollbar-hide snap-x snap-mandatory h-80 rounded-lg"
+          >
+            {workImages.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`Work Experience ${index + 1}`}
+                className="h-full w-auto object-contain rounded-lg shadow-lg flex-shrink-0 snap-start"
+              />
+            ))}
+          </div>
 
+          {/* Right Button - always visible */}
+          <button
+  onClick={() => scrollSlider("next")}
+  className="absolute right-0 top-1/2 -translate-y-1/2 
+             bg-gray-200 dark:bg-gray-700 
+             p-1 rounded-full z-10 
+             hover:scale-110 transition shadow-md"
+  aria-label="Next"
+>
+  <ChevronRight className="w-4 h-4" />
+</button>
+
+        </div>
       </div>
     </motion.section>
   );

@@ -47,41 +47,71 @@ const projects = [
   }
 ];
 
+
 export default function Projects() {
   const sliderRef = useRef(null);
+  const [showLeft, setShowLeft] = useState(false);
 
   const scrollSlider = (dir) => {
     const container = sliderRef.current;
     if (!container) return;
+
     const cardWidth = 320 + 24; // width + gap
-    container.scrollBy({ left: dir === "next" ? cardWidth : -cardWidth, behavior: "smooth" });
+    container.scrollBy({
+      left: dir === "next" ? cardWidth : -cardWidth,
+      behavior: "smooth",
+    });
   };
 
+  // Update left button visibility on scroll
+  useEffect(() => {
+    const container = sliderRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      // Show left button if scrolled > 10px
+      setShowLeft(container.scrollLeft > 10);
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section id="projects" className="px-4 ">
+    <section id="projects" className="px-4">
       <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
         Projects
       </h2>
 
       <div className="relative">
-        {/* Left Button */}
-        <button
-          onClick={() => scrollSlider("prev")}
-          className="absolute -left-4 top-1/2 transform -translate-y-1/2 bg-gray-200 dark:bg-gray-700 p-2 rounded-full z-10 hover:scale-110 transition"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
+        {/* Left Button - only visible if scrolled */}
+        {showLeft && (
+          <button
+            onClick={() => scrollSlider("prev")}
+            className="absolute left-1 sm:-left-5 top-1/2 -translate-y-1/2 
+                       bg-gray-200 dark:bg-gray-700 p-1 
+                       rounded-full z-10 hover:scale-110 transition 
+                       shadow-md touch-manipulation"
+            aria-label="Previous"
+          >
+            <ChevronLeft className="w-6 h-6 sm:w-5 sm:h-5" />
+          </button>
+        )}
 
         {/* Horizontal Slider */}
         <div
           ref={sliderRef}
-          className="flex gap-10 overflow-x-auto overflow-y-hidden  scroll-smooth no-scrollbar px-4whitespace-nowrap"
+          className="flex gap-10 overflow-x-auto overflow-y-hidden 
+                     scroll-smooth no-scrollbar px-2 sm:px-4 whitespace-nowrap"
         >
           {projects.map((p, i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.05 }}
-              className="min-w-[320px] rounded-3xl shadow-lg overflow-hidden bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900"
+              className="min-w-[320px] rounded-3xl shadow-lg 
+                         overflow-hidden bg-gradient-to-b 
+                         from-gray-100 to-gray-200 
+                         dark:from-gray-800 dark:to-gray-900"
             >
               <img
                 src={p.image}
@@ -89,13 +119,19 @@ export default function Projects() {
                 className="w-full h-48 object-cover rounded-2xl"
               />
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{p.title}</h3>
-                <p className="text-gray-700 dark:text-gray-300">{p.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  {p.title}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {p.description}
+                </p>
                 <a
                   href={p.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                  className="mt-4 inline-flex items-center gap-1 px-3 py-2 
+                             border border-gray-300 dark:border-gray-600 
+                             rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                 >
                   <Github className="w-4 h-4" /> Code
                 </a>
@@ -104,12 +140,16 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Right Button */}
+        {/* Right Button - always visible */}
         <button
           onClick={() => scrollSlider("next")}
-          className="absolute -right-4 top-1/2 transform -translate-y-1/2 bg-gray-200 dark:bg-gray-700 p-2 rounded-full z-10 hover:scale-110 transition"
+          className="absolute right-2 sm:-right-5 top-1/2 -translate-y-1/2 
+                     bg-gray-200 dark:bg-gray-700 p-1 
+                     rounded-full z-10 hover:scale-110 transition 
+                     shadow-md touch-manipulation"
+          aria-label="Next"
         >
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-6 h-6 sm:w-5 sm:h-5" />
         </button>
       </div>
     </section>
