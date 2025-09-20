@@ -21,7 +21,7 @@ export default function WorkExperience() {
     const cardWidth = container.clientWidth;
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
 
-    let newScroll =
+    const newScroll =
       dir === "next"
         ? Math.min(container.scrollLeft + cardWidth, maxScrollLeft)
         : Math.max(container.scrollLeft - cardWidth, 0);
@@ -88,13 +88,14 @@ export default function WorkExperience() {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          {/* Left Button */}
+          {/* Left Button (hidden on mobile) */}
           <button
             onClick={() => scrollSlider("prev")}
             className={`absolute left-0 -translate-x-full top-1/2 -translate-y-1/2
               bg-gray-200 dark:bg-gray-700 p-1 rounded-full z-10
               hover:scale-110 transition-opacity duration-300 shadow-md
-              ${showLeft || hovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+              ${showLeft || hovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+              hidden md:inline-flex`}
             aria-label="Previous"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -103,7 +104,8 @@ export default function WorkExperience() {
           {/* Image Slider */}
           <div
             ref={sliderRef}
-            className="flex flex-nowrap overflow-x-auto md:overflow-hidden snap-x snap-mandatory touch-pan-x"
+            className="flex flex-nowrap overflow-x-auto md:overflow-hidden overflow-y-hidden snap-x snap-mandatory touch-pan-x
+              scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800 hover:scrollbar-thumb-gray-600 transition-colors duration-300"
           >
             {workImages.map((img, index) => (
               <motion.div
@@ -120,13 +122,14 @@ export default function WorkExperience() {
             ))}
           </div>
 
-          {/* Right Button */}
+          {/* Right Button (hidden on mobile) */}
           <button
             onClick={() => scrollSlider("next")}
             className={`absolute right-0 translate-x-full top-1/2 -translate-y-1/2
               bg-gray-200 dark:bg-gray-700 p-1 rounded-full z-10
               hover:scale-110 transition-opacity duration-300 shadow-md
-              ${showRight || hovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+              ${showRight || hovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+              hidden md:inline-flex`}
             aria-label="Next"
           >
             <ChevronRight className="w-6 h-6" />
