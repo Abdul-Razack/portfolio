@@ -13,7 +13,7 @@ const projects = [
   { title: "Product Catalog", description: "A simple product catalog built with React.", image: product, github: "https://github.com/Abdul-Razack/Product-Catalog" },
   { title: "Portfolio Website", description: "My personal portfolio website built with React and Tailwind CSS.", image: folio, github: "https://github.com/Abdul-Razack/Portfolio" },
   { title: "Age Calculator", description: "A simple age calculator built with Js.", image: age, github: "https://github.com/Abdul-Razack/Age-Calculator" }
-]
+];
 
 export default function Projects() {
   const sliderRef = useRef(null);
@@ -21,36 +21,25 @@ export default function Projects() {
   const [showRight, setShowRight] = useState(true);
   const [hovered, setHovered] = useState(false);
 
-  // This function handles the smooth scrolling
   const scrollSlider = (dir) => {
     const container = sliderRef.current;
     if (!container) return;
 
-    // Get the width of a single card
-    const firstCard = container.querySelector('.flex-shrink-0');
+    const firstCard = container.querySelector(".flex-shrink-0");
     if (!firstCard) return;
 
     const cardWidth = firstCard.offsetWidth;
-    const gap = 24; // Tailwind's `gap-6`
-    
-    // Check if the screen is mobile based on Tailwind's sm breakpoint (640px)
+    const gap = 16; // Tailwind gap-4 = 16px
+
     const isMobile = window.innerWidth < 640;
 
-    let scrollAmount;
-    if (isMobile) {
-      // On mobile, scroll by the width of one card plus the gap
-      scrollAmount = cardWidth + gap;
-    } else {
-      // On desktop, scroll by the container's full visible width (current behavior)
-      scrollAmount = container.clientWidth;
-    }
-
+    const scrollAmount = isMobile ? cardWidth + gap : container.clientWidth;
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
     const newScroll = dir === "next"
       ? Math.min(container.scrollLeft + scrollAmount, maxScrollLeft)
       : Math.max(container.scrollLeft - scrollAmount, 0);
 
-    // `behavior: "smooth"` provides the smooth slide animation
     container.scrollTo({ left: newScroll, behavior: "smooth" });
   };
 
@@ -80,10 +69,12 @@ export default function Projects() {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        {/* Left Button */}
+        {/* Left Button (hidden on mobile) */}
         <button
           onClick={() => scrollSlider("prev")}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-700 p-2 rounded-full z-20 hover:scale-110 transition-opacity duration-300 shadow-md ${showLeft || hovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+          className={`absolute left-0 top-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-700 p-2 rounded-full z-20 hover:scale-110 transition-opacity duration-300 shadow-md
+            ${showLeft || hovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+            hidden sm:inline-flex`} 
           aria-label="Previous"
         >
           <ChevronLeft className="w-6 h-6 sm:w-5 sm:h-5" />
@@ -92,13 +83,13 @@ export default function Projects() {
         {/* Slider */}
         <div
           ref={sliderRef}
-          className="flex gap-4 overflow-hidden snap-x snap-mandatory touch-pan-x"
+          className="flex gap-4 overflow-x-auto sm:overflow-hidden overflow-y-hidden snap-x snap-mandatory touch-pan-x scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800 hover:scrollbar-thumb-gray-600 dark:hover:scrollbar-thumb-gray-500 transition-padding duration-300 sm:overflow-y-hidden"
         >
           {projects.map((p, i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.05 }}
-              className="w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 rounded-3xl shadow-lg overflow-hidden bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900"
+              className="w-72 sm:w-1/2 lg:w-1/3 flex-shrink-0 rounded-3xl shadow-lg overflow-hidden bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900"
             >
               <img
                 src={p.image}
@@ -123,10 +114,12 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Right Button */}
+        {/* Right Button (hidden on mobile) */}
         <button
           onClick={() => scrollSlider("next")}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-700 p-2 rounded-full z-20 hover:scale-110 transition-opacity duration-300 shadow-md ${showRight || hovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+          className={`absolute right-0 top-1/2 -translate-y-1/2 bg-gray-200 dark:bg-gray-700 p-2 rounded-full z-20 hover:scale-110 transition-opacity duration-300 shadow-md
+            ${showRight || hovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+            hidden sm:inline-flex`}
           aria-label="Next"
         >
           <ChevronRight className="w-6 h-6 sm:w-5 sm:h-5" />

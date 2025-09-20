@@ -1,3 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Mobile-only horizontal scrollbar (≤640px) */
+@media (max-width: 640px) {
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #9ca3af;
+    border-radius: 9999px;
+    transition: background-color 0.3s;
+  }
+  .scrollbar-thin:hover::-webkit-scrollbar-thumb {
+    background-color: #6b7280; /* darker gray on hover */
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+  }
+
+  /* Firefox */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #9ca3af #e5e7eb;
+  }
+  .scrollbar-thin:hover {
+    scrollbar-color: #6b7280 #e5e7eb;
+  }
+}
+
+/* Hide scrollbar on desktop */
+@media (min-width: 641px) {
+  .scrollbar-thin::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-thin {
+    scrollbar-width: none;
+  }
+}
+
+/* Always hide vertical scrollbar */
+.scrollbar-thin {
+  overflow-y: hidden;
+}
