@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-
+import profile from '../assets/pic.jpg';
 export default function Hero() {
   return (
 
@@ -13,7 +13,7 @@ export default function Hero() {
       {/* Profile Photo */}
       <div id="hero"  className="mx-auto mb-6 w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-gray-500 -mt-12">
         <img
-          src="/profile.jpg" // place your image in the public folder
+          src={profile}
           alt="Abdul Razack"
           className="w-full h-full object-cover"
         />

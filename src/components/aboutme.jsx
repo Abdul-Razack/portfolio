@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Download, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
-import pdf from "../assets/ABDUL RAZACK A Resume.pdf";
+import pdf from "../assets/Abdul Razack A Resume.pdf";
 import workImage1 from "../assets/avi.png";
 import workImage2 from "../assets/avi2.png";
 import workImage3 from "../assets/avi3.png";
