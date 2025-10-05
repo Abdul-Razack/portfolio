@@ -23,7 +23,7 @@ export default function Contact() {
           className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white flex items-center gap-1"
         >
           <Phone className="w-6 h-6" />
-          <span className="hidden sm:inline">+91 9342217586</span>
+          <span className="hidden sm:inline">+971 544971861</span>
         </a>
       </div>
       <div className="flex justify-center gap-6 items-center flex-wrap pt-4">
