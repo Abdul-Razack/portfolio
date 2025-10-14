@@ -105,9 +105,9 @@ export default function Projects() {
                   href={p.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                  className="mt-4 inline-flex items-center gap-1 px-3 py-2 border bg-slate-200 border-gray-900 dark:border-gray-600 rounded hover:bg-gray-500 dark:hover:bg-gray-700 transition"
                 >
-                  <Github className="w-4 h-4" /> Code
+                  <Github className="w-4 h-4 " /> Code
                 </a>
               </div>
             </motion.div>
