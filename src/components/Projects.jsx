@@ -67,7 +67,7 @@ export default function Projects() {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.9 }}
       className="py-12 bg-white dark:bg-gray-900 rounded-xl shadow-lg"
     >
     <section id="projects" className="px-0 py-20">
