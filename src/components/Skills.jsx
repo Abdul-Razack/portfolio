@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-const skills = ["React","Next.js","Node.js","Tailwind CSS","TypeScript","MongoDB"];
+const skills = ["React","Next.js","Node.js","Tailwind CSS","TypeScript","API Development","MongoDB"];
 export default function Skills() {
   return (
     <motion.section id="skills"  initial={{opacity:0, y:20}} whileInView={{opacity:1, y:0}} viewport={{once:true}} transition={{duration:0.6}} className="pt-32">

@@ -6,13 +6,16 @@ import tic from "../assets/tictactoe.png";
 import age from "../assets/agec.png";
 import product from "../assets/product.png";
 import folio from "../assets/pfolio.png";
+import bchain from "../assets/bchain.png";
 
 const projects = [
+  { title: "Crypto Exchange", description: "A simple cryptocurrency exchange built with React using rest APIs.", image: bchain, github: "https://github.com/Abdul-Razack/Blockchain" },
   { title: "Tic Tac Toe Game", description: "A simple Tic Tac Toe game built with React.", image: tic, github: "https://github.com/Abdul-Razack/Tic-Tac-Toe" },
   { title: "Dashboard", description: "Real-time dashboard using React and Tailwind CSS.", image: dash, github: "https://github.com/Abdul-Razack/dashboard" },
   { title: "Product catalogue", description: "A simple product catalogue built with React.", image: product, github: "https://github.com/Abdul-Razack/Product-Catalog" },
   { title: "Portfolio Website", description: "My personal portfolio website built with React and Tailwind CSS.", image: folio, github: "https://github.com/Abdul-Razack/Portfolio" },
   { title: "Age Calculator", description: "A simple age calculator built with Js.", image: age, github: "https://github.com/Abdul-Razack/Age-Calculator" }
+ 
 ];
 
 export default function Projects() {

@@ -4,11 +4,15 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import BackToTop from './components/BackToTop';
-import WorkExperience  from './components/aboutme';
+import WorkExperience from './components/aboutme';
 import MoreAboutMe from './components/moreaboutme';
+
 export default function App() {
   return (
-    <div className="bg-white dark:bg-black min-h-screen transition-colors duration-300">
+    <div
+      className="min-h-screen transition-colors duration-500 bg-[#ffffff] text-gray-900
+                 dark:bg-[#0d1117] dark:text-[#f0f6fc]"
+    >
       <Navbar />
       <main className="px-6 py-24 max-w-6xl mx-auto space-y-20">
         <Hero />
