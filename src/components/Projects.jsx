@@ -105,13 +105,20 @@ export default function Projects() {
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300">{p.description}</p>
                 <a
-                  href={p.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-1 px-3 py-2 border bg-slate-200 border-gray-900 dark:border-gray-600 rounded hover:bg-gray-500 dark:hover:bg-gray-700 transition"
-                >
-                  <Github className="w-4 h-4 " /> Code
-                </a>
+                    href={p.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      mt-4 inline-flex items-center gap-2 px-4 py-2
+                      rounded-lg font-medium shadow-sm
+                      transition-all duration-300
+                      bg-[#0d1117] text-[#f0f6fc] border border-gray-800
+                      hover:bg-[#161b22] hover:border-gray-700
+                      dark:bg-[#0d1117] dark:text-[#f0f6fc]
+                      dark:border-gray-700 dark:hover:bg-[#161b22] dark:hover:border-gray-600">
+                            <Github className="w-4 h-4" />
+                            GitHub
+                          </a>  
               </div>
             </motion.div>
           ))}
