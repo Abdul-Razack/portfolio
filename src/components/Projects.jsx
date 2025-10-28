@@ -60,8 +60,16 @@ export default function Projects() {
     container.addEventListener("scroll", handleScroll);
     return () => container.removeEventListener("scroll", handleScroll);
   }, []);
-
+ 
   return (
+    <motion.section
+      id="education"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="py-12 bg-white dark:bg-gray-900 rounded-xl shadow-lg"
+    >
     <section id="projects" className="px-0 py-20">
       <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
         Projects
@@ -136,5 +144,6 @@ export default function Projects() {
         </button>
       </div>
     </section>
+    </motion.section>
   );
 }
