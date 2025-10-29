@@ -13,11 +13,11 @@ export default function WorkExperience() {
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(true);
   const [hovered, setHovered] = useState(false);
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
 
   const scrollSlider = (dir) => {
     const container = sliderRef.current;
     if (!container) return;
-
     const cardWidth = container.clientWidth;
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
 
@@ -29,20 +29,47 @@ export default function WorkExperience() {
     container.scrollTo({ left: newScroll, behavior: "smooth" });
   };
 
+  // Show/hide buttons
   useEffect(() => {
     const container = sliderRef.current;
     if (!container) return;
 
     const handleScroll = () => {
+      setIsUserScrolling(true);
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
       setShowLeft(container.scrollLeft > 5);
       setShowRight(container.scrollLeft < maxScrollLeft - 5);
+
+      const timeout = setTimeout(() => setIsUserScrolling(false), 3000);
+      return () => clearTimeout(timeout);
     };
 
-    handleScroll();
     container.addEventListener("scroll", handleScroll);
+    handleScroll();
+
     return () => container.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Auto-slide
+  useEffect(() => {
+    const container = sliderRef.current;
+    if (!container) return;
+
+    const interval = setInterval(() => {
+      if (!hovered && !isUserScrolling) {
+        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+        const atEnd = container.scrollLeft >= maxScrollLeft - 5;
+
+        if (atEnd) {
+          container.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          scrollSlider("next");
+        }
+      }
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [hovered, isUserScrolling]);
 
   return (
     <motion.section
@@ -51,7 +78,7 @@ export default function WorkExperience() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="max-w-3xl mx-auto px-4 py-12 bg-white dark:bg-gray-900 rounded-xl shadow-1xl"
+      className="max-w-3xl mx-auto px-4 py-12 bg-white dark:bg-gray-900 rounded-xl shadow-xl"
     >
       <h2 className="text-3xl font-bold mb-10 text-center text-gray-900 dark:text-white pt-20">
         Work Experience
@@ -66,7 +93,8 @@ export default function WorkExperience() {
           <p className="text-gray-700 dark:text-gray-300 mb-4">
             During my tenure at <span className="font-medium">Numerique360</span>, I contributed
             to building responsive and high-performance web applications. My role focused on
-            creating clean, user-friendly interfaces using <span className="font-medium">React.js, Tailwind CSS, and JavaScript</span>.
+            creating clean, user-friendly interfaces using{" "}
+            <span className="font-medium">React.js, Tailwind CSS, and JavaScript</span>.
           </p>
           <p className="text-gray-700 dark:text-gray-300 mb-6">
             I am passionate about crafting accessible, efficient, and visually appealing front-end
@@ -88,7 +116,7 @@ export default function WorkExperience() {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          {/* Left Button (hidden on mobile) */}
+          {/* Left Button (desktop only) */}
           <button
             onClick={() => scrollSlider("prev")}
             className={`absolute left-0 -translate-x-full top-1/2 -translate-y-1/2
@@ -104,8 +132,18 @@ export default function WorkExperience() {
           {/* Image Slider */}
           <div
             ref={sliderRef}
-            className="flex flex-nowrap overflow-x-auto md:overflow-hidden overflow-y-hidden snap-x snap-mandatory touch-pan-x
-              scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800 hover:scrollbar-thumb-gray-600 transition-colors duration-300"
+            className="
+              flex flex-nowrap gap-4
+              overflow-x-auto overflow-y-auto
+              touch-pan-x touch-pan-y
+              scroll-smooth
+              snap-x snap-mandatory
+              scrollbar-thin
+              scrollbar-thumb-transparent scrollbar-track-transparent
+              hover:scrollbar-thumb-gray-400 dark:hover:scrollbar-thumb-gray-600
+              transition-all duration-300
+            "
+            style={{ maxHeight: "500px" }} // allow vertical scroll on mobile
           >
             {workImages.map((img, index) => (
               <motion.div
@@ -122,7 +160,7 @@ export default function WorkExperience() {
             ))}
           </div>
 
-          {/* Right Button (hidden on mobile) */}
+          {/* Right Button (desktop only) */}
           <button
             onClick={() => scrollSlider("next")}
             className={`absolute right-0 translate-x-full top-1/2 -translate-y-1/2
