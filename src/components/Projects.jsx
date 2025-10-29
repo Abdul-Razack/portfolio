@@ -95,7 +95,9 @@ export default function Projects() {
         <div
           ref={sliderRef}
           className="flex gap-4 overflow-x-auto sm:overflow-hidden overflow-y-hidden snap-x snap-mandatory touch-pan-x scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800 hover:scrollbar-thumb-gray-600 dark:hover:scrollbar-thumb-gray-500 transition-padding duration-300 sm:overflow-y-hidden"
-        >
+               style={{
+    scrollSnapType: "x proximity", // allows light snapping without locking
+  }}>
           {projects.map((p, i) => (
             <motion.div
               key={i}
