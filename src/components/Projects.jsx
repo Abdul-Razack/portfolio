@@ -87,7 +87,7 @@ export default function Projects() {
       setShowLeft(container.scrollLeft > 5);
       setShowRight(container.scrollLeft < maxScrollLeft - 5);
 
-      const timeout = setTimeout(() => setIsUserScrolling(false), 3000);
+      const timeout = setTimeout(() => setIsUserScrolling(false), 100);
       return () => clearTimeout(timeout);
     };
 
