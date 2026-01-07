@@ -241,8 +241,8 @@ export default function WorkExperience() {
                 {/* Slider Container */}
                     <div
                         ref={sliderRef}
-                        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none touch-pan-y scroll-smooth"
-                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: "pan-y" }}
+                        className="flex gap-6 pb-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none"
+                        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                     >
 
                     {slides.map((current, i) => (
