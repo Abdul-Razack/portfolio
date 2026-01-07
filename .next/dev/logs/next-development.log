@@ -1,0 +1,83 @@
+[00:00:01.254] Server  LOG     ✓ Ready in 1012ms
+[00:00:18.919] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:19.973] Browser WARN    Image with src "/images/marsad.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:19.973] Browser WARN    Image with src "/images/swapxe.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:19.973] Browser WARN    Image with src "/images/bchain.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:19.973] Browser WARN    Image with src "/images/jobbot.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:19.973] Browser WARN    Image with src "/images/pfolio.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:32.049] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:32.708] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
++                           className="inter_5972bc34-module__OU16Qa__className bg-gray-50 dark:bg-gray-900 text-gray-..."
+-                           className="inter_5972bc34-module__OU16Qa__className bg-gray-50 dark:bg-gray-900 text-gray-..."
+                          >
+                  ...
+
+[00:00:32.708] Browser WARN    Image with src "/images/marsad.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:32.708] Browser WARN    Image with src "/images/swapxe.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:32.708] Browser WARN    Image with src "/images/bchain.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:32.708] Browser WARN    Image with src "/images/jobbot.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:00:32.708] Browser WARN    Image with src "/images/pfolio.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:52:51.507] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:52:52.402] Browser WARN    Image with src "/images/marsad.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:52:52.402] Browser WARN    Image with src "/images/swapxe.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:52:52.403] Browser WARN    Image with src "/images/bchain.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:52:52.406] Browser WARN    Image with src "/images/jobbot.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:52:52.406] Browser WARN    Image with src "/images/pfolio.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:53:33.129] Browser LOG     Autoplay deferred {}
+[00:54:08.595] Browser LOG     Autoplay deferred {}
+[00:54:17.267] Browser LOG     Autoplay deferred {}
+[01:08:21.541] Browser LOG     Autoplay deferred {}
+[01:48:45.648] Browser LOG     Autoplay deferred {}
+[02:04:13.332] Browser LOG     Autoplay deferred {}
+[02:04:21.651] Browser LOG     Autoplay deferred {}
+[02:04:29.935] Browser LOG     Autoplay deferred {}
+[02:44:11.851] Browser LOG     Autoplay deferred {}
+[03:40:49.803] Browser LOG     Autoplay deferred {}
+[04:06:34.679] Browser LOG     Autoplay deferred {}
+[05:07:20.375] Browser LOG     Autoplay deferred {}
+[05:07:20.860] Browser LOG     Autoplay deferred {}
+[05:08:01.350] Browser LOG     Autoplay deferred {}
+[06:01:44.167] Browser LOG     Autoplay deferred {}
+[06:02:00.821] Browser LOG     Autoplay deferred {}
+[06:08:46.801] Browser LOG     Autoplay deferred {}
+[07:09:32.679] Browser LOG     Autoplay deferred {}
+[07:09:56.896] Browser LOG     Autoplay deferred {}
+[07:51:43.876] Browser LOG     Autoplay deferred {}
+[07:52:24.404] Browser LOG     Autoplay deferred {}
+[08:10:25.384] Browser LOG     Autoplay deferred {}
+[08:10:57.785] Browser LOG     Autoplay deferred {}
+[08:33:37.476] Browser LOG     Autoplay deferred {}
+[08:34:17.206] Browser LOG     Autoplay deferred {}
+[08:34:56.991] Browser LOG     Autoplay deferred {}
+[08:35:36.673] Browser LOG     Autoplay deferred {}
+[08:36:57.372] Browser LOG     Autoplay deferred {}
