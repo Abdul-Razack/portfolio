@@ -239,11 +239,12 @@ export default function WorkExperience() {
                 </button>
 
                 {/* Slider Container */}
-                <div
-                    ref={sliderRef}
-                    className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none touch-pan-x scroll-smooth"
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                >
+                    <div
+                        ref={sliderRef}
+                        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none touch-pan-y scroll-smooth"
+                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: "pan-y" }}
+                    >
+
                     {slides.map((current, i) => (
                         <div
                             key={current.key}
