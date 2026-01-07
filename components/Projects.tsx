@@ -54,7 +54,6 @@ const projects: Project[] = [
 
 export default function Projects() {
     const scrollRef = useRef<HTMLDivElement>(null);
-    const [hovered, setHovered] = useState(false);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -112,8 +111,6 @@ export default function Projects() {
             {/* Project Slider Container */}
             <div
                 className="group/slider relative px-4 md:px-12"
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
             >
                 <div
                     ref={scrollRef}
