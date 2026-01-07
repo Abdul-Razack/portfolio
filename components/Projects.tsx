@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Github } from "lucide-react";
+import { ChevronLeft, ChevronRight, Github, Circle } from "lucide-react";
 import Image from "next/image";
 
 interface Project {
@@ -53,44 +53,81 @@ const projects: Project[] = [
 ];
 
 export default function Projects() {
-    const scrollRef = useRef<HTMLDivElement>(null);
-    const [canScrollLeft, setCanScrollLeft] = useState(false);
-    const [canScrollRight, setCanScrollRight] = useState(true);
+    const sliderRef = useRef<HTMLDivElement>(null);
 
-    const handleScrollTo = (direction: "left" | "right") => {
-        const container = scrollRef.current;
-        if (!container) return;
+    const [showLeft, setShowLeft] = useState(false);
+    const [showRight, setShowRight] = useState(true);
+    const [hovered, setHovered] = useState(false);
+    const [isUserScrolling, setIsUserScrolling] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
 
-        const scrollAmount = container.clientWidth * 0.8;
-        const targetScroll =
-            direction === "left"
-                ? container.scrollLeft - scrollAmount
-                : container.scrollLeft + scrollAmount;
-
-        container.scrollTo({
-            left: targetScroll,
-            behavior: "smooth",
-        });
-    };
-
-    const updateScrollButtons = () => {
-        const container = scrollRef.current;
-        if (!container) return;
-
-        setCanScrollLeft(container.scrollLeft > 10);
-        setCanScrollRight(
-            container.scrollLeft < container.scrollWidth - container.clientWidth - 10
-        );
-    };
-
+    // Update total pages on resize
     useEffect(() => {
-        const container = scrollRef.current;
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                // Desktop: 3 cards per view
+                setTotalPages(Math.ceil(projects.length / 3));
+            } else {
+                // Mobile: 1 card per view
+                setTotalPages(projects.length);
+            }
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    // Scroll function
+    const scrollSlider = (dir: "prev" | "next") => {
+        const container = sliderRef.current;
         if (!container) return;
 
-        container.addEventListener("scroll", updateScrollButtons);
-        updateScrollButtons();
-        return () => container.removeEventListener("scroll", updateScrollButtons);
-    }, []);
+        const scrollAmount = container.clientWidth; // Scroll one viewport width
+        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+        const newScroll =
+            dir === "next"
+                ? Math.min(container.scrollLeft + scrollAmount, maxScrollLeft)
+                : Math.max(container.scrollLeft - scrollAmount, 0);
+
+        container.scrollTo({ left: newScroll, behavior: "smooth" });
+    };
+
+    const scrollToSlide = (index: number) => {
+        const container = sliderRef.current;
+        if (!container) return;
+        const scrollAmount = container.clientWidth * index;
+        container.scrollTo({ left: scrollAmount, behavior: "smooth" });
+    };
+
+    // Show/hide buttons & Track Active Slide/Page
+    useEffect(() => {
+        const container = sliderRef.current;
+        if (!container) return;
+
+        const handleScroll = () => {
+            setIsUserScrolling(true);
+            const maxScrollLeft = container.scrollWidth - container.clientWidth;
+            setShowLeft(container.scrollLeft > 10);
+            setShowRight(container.scrollLeft < maxScrollLeft - 10);
+
+            // Calculate active page index
+            const index = Math.round(container.scrollLeft / container.clientWidth);
+            if (index !== currentSlide) {
+                setCurrentSlide(index);
+            }
+
+            const timeout = setTimeout(() => setIsUserScrolling(false), 100);
+            return () => clearTimeout(timeout);
+        };
+
+        container.addEventListener("scroll", handleScroll);
+        handleScroll();
+
+        return () => container.removeEventListener("scroll", handleScroll);
+    }, [currentSlide]);
 
     return (
         <motion.section
@@ -108,13 +145,33 @@ export default function Projects() {
                 </h2>
             </div>
 
-            {/* Project Slider Container */}
             <div
                 className="group/slider relative px-4 md:px-12"
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
             >
+                {/* Navigation Buttons (Desktop) */}
+                <button
+                    onClick={() => scrollSlider("prev")}
+                    className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-gray-200 dark:bg-gray-700 shadow-md transition-opacity duration-300 hover:scale-110 hidden md:inline-flex ${showLeft || hovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+                    aria-label="Previous slide"
+                >
+                    <ChevronLeft size={24} />
+                </button>
+
+                <button
+                    onClick={() => scrollSlider("next")}
+                    className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-gray-200 dark:bg-gray-700 shadow-md transition-opacity duration-300 hover:scale-110 hidden md:inline-flex ${showRight || hovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+                    aria-label="Next slide"
+                >
+                    <ChevronRight size={24} />
+                </button>
+
+                {/* Slider Container */}
                 <div
-                    ref={scrollRef}
+                    ref={sliderRef}
                     className="flex gap-6 pb-8 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none"
+                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {projects.map((project, index) => (
                         <motion.div
@@ -185,33 +242,22 @@ export default function Projects() {
                     ))}
                 </div>
 
-                {/* Slider Navigation Buttons */}
-                <AnimatePresence>
-                    {canScrollLeft && (
-                        <motion.button
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 20 }}
-                            onClick={() => handleScrollTo("left")}
-                            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/90 border border-gray-200 shadow-xl text-gray-800 transition-all hover:bg-white hover:scale-110 md:-left-4 dark:bg-gray-800/90 dark:border-gray-700 dark:text-white"
-                            aria-label="Previous project"
+                {/* Indicator Dots */}
+                <div className="flex justify-center gap-3 mt-6 pb-2">
+                    {Array.from({ length: totalPages }).map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => scrollToSlide(idx)}
+                            className={`transition-all duration-300 p-1 ${idx === currentSlide
+                                ? "text-blue-600 scale-125"
+                                : "text-gray-400 dark:text-gray-600 hover:text-gray-500"
+                                }`}
+                            aria-label={`Go to page ${idx + 1}`}
                         >
-                            <ChevronLeft size={24} />
-                        </motion.button>
-                    )}
-                    {canScrollRight && (
-                        <motion.button
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -20 }}
-                            onClick={() => handleScrollTo("right")}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/90 border border-gray-200 shadow-xl text-gray-800 transition-all hover:bg-white hover:scale-110 md:-right-4 dark:bg-gray-800/90 dark:border-gray-700 dark:text-white"
-                            aria-label="Next project"
-                        >
-                            <ChevronRight size={24} />
-                        </motion.button>
-                    )}
-                </AnimatePresence>
+                            <Circle size={12} className={idx === currentSlide ? "fill-current" : ""} />
+                        </button>
+                    ))}
+                </div>
             </div>
         </motion.section>
     );
