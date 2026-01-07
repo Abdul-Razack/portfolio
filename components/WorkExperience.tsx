@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, ChevronLeft, ChevronRight, Play, X, Circle } from "lucide-react";
+import Portal from "./Portal";
 
 interface Experience {
     key: string;
@@ -182,6 +183,16 @@ export default function WorkExperience() {
         document.body.style.overflow = isModalOpen ? "hidden" : "unset";
     }, [isModalOpen]);
 
+    // Escape key listener for modal
+    useEffect(() => {
+        if (!isModalOpen) return;
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") closeModal();
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [isModalOpen]);
+
     // Strict Autoplay Logic on Slide Change
     useEffect(() => {
         videoRefs.current.forEach((vid, idx) => {
@@ -239,11 +250,11 @@ export default function WorkExperience() {
                 </button>
 
                 {/* Slider Container */}
-                    <div
-                        ref={sliderRef}
-                        className="flex gap-6 pb-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none"
-                        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-                    >
+                <div
+                    ref={sliderRef}
+                    className="flex gap-6 pb-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none"
+                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                >
 
                     {slides.map((current, i) => (
                         <div
@@ -326,38 +337,40 @@ export default function WorkExperience() {
             </div>
 
             {/* Video Modal */}
-            <AnimatePresence>
-                {isModalOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={closeModal}
-                        className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
-                    >
+            <Portal>
+                <AnimatePresence>
+                    {isModalOpen && (
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-3xl bg-black shadow-2xl"
-                            onClick={(e) => e.stopPropagation()}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={closeModal}
+                            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
                         >
-                            <button
-                                onClick={closeModal}
-                                className="absolute right-4 top-4 z-50 rounded-full bg-black/50 p-2 text-white transition-transform hover:scale-110 hover:bg-black/70"
+                            <motion.div
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 0.9, opacity: 0 }}
+                                className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-3xl bg-black shadow-2xl"
+                                onClick={(e) => e.stopPropagation()}
                             >
-                                <X size={24} />
-                            </button>
-                            <video
-                                src={selectedVideo}
-                                controls
-                                autoPlay
-                                className="h-full w-full object-contain"
-                            />
+                                <button
+                                    onClick={closeModal}
+                                    className="absolute right-4 top-4 z-50 rounded-full bg-black/50 p-2 text-white transition-transform hover:scale-110 hover:bg-black/70"
+                                >
+                                    <X size={24} />
+                                </button>
+                                <video
+                                    src={selectedVideo}
+                                    controls
+                                    autoPlay
+                                    className="h-full w-full object-contain"
+                                />
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    )}
+                </AnimatePresence>
+            </Portal>
         </motion.section>
     );
 }
