@@ -48,7 +48,7 @@ export default function Contact() {
 
                     <div className="grid grid-cols-1 gap-3">
                         <a
-                            href="mailto:abdulrazack.it@gmail.com"
+                            href="mailto:abdulrazackabu2003@gmail.com"
                             className="flex items-center gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-transparent transition-all hover:border-blue-500/30 hover:bg-white dark:hover:bg-gray-800 group"
                         >
                             <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 group-hover:scale-110 transition-transform">
@@ -59,13 +59,13 @@ export default function Contact() {
                                     Email Me
                                 </p>
                                 <p className="text-base font-bold text-gray-900 dark:text-white">
-                                    abdulrazack.it@gmail.com
+                                    abdulrazackabu2003@gmail.com
                                 </p>
                             </div>
                         </a>
 
                         <a
-                            href="https://linkedin.com/in/abdul-razack"
+                            href="https://linkedin.com/in/abdul-razack-a-84a7b9249"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-transparent transition-all hover:border-blue-500/30 hover:bg-white dark:hover:bg-gray-800 group"
@@ -103,7 +103,7 @@ export default function Contact() {
                         </a>
 
                         <a
-                            href="tel:+971556602353"
+                            href="tel:+971544971861"
                             className="flex items-center gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-transparent transition-all hover:border-blue-500/30 hover:bg-white dark:hover:bg-gray-800 group"
                         >
                             <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 group-hover:scale-110 transition-transform">
@@ -171,7 +171,7 @@ export default function Contact() {
   border transition-all duration-200 select-none
   focus:outline-none
 
-  /* ✅ Default: crisp border + darker edge, lower inside light */
+  /*  Default: crisp border + darker edge, lower inside light */
   enabled:text-white
   enabled:bg-emerald-500/10
   enabled:border-emerald-300/35
