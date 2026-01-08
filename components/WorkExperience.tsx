@@ -30,18 +30,17 @@ const slides: Experience[] = [
         videoSrc: "/videos/marsad.mov",
     },
     {
-        key: "swapxe",
-        title: "Crypto Dashboard (SwapXe)",
+        key: "jobbot",
+        title: "Automation Platform (Job Bot)",
         roleLine: "Front-End Developer – Numerique360 (Dubai, UAE)",
         summary:
-            "Developed a secure crypto dashboard with JWT authentication and protected routes. Displayed real-time API results such as wallet and transaction views with a clean, responsive dashboard UI.",
+            "Built a full-stack automation platform with a monitoring dashboard to track bot runs and job application progress. Focused on structured UI, status visibility, and reliable execution feedback.",
         bullets: [
-            "Implemented JWT authentication with secure token handling and route protection.",
-            "Integrated APIs to show real-time wallet and transaction-related data.",
-            "Built reusable dashboard components and responsive layouts.",
-            "Added loading states and error handling for reliable user experience."
+            "Built dashboards to monitor bot runs, statuses, and step-level progress.",
+            "Implemented structured logs and clear UI feedback for each run.",
+            "Designed the system to process one job at a time for stability."
         ],
-        videoSrc: "/videos/swapxe.mov",
+        videoSrc: "/videos/jobbot.mov",
     },
     {
         key: "aviation",
@@ -68,19 +67,6 @@ const slides: Experience[] = [
             "Optimized UI update flow for smoother performance."
         ],
         videoSrc: "/videos/blockchain.mov",
-    },
-    {
-        key: "jobbot",
-        title: "Automation Platform (Job Bot)",
-        roleLine: "Front-End Developer – Numerique360 (Dubai, UAE)",
-        summary:
-            "Built a full-stack automation platform with a monitoring dashboard to track bot runs and job application progress. Focused on structured UI, status visibility, and reliable execution feedback.",
-        bullets: [
-            "Built dashboards to monitor bot runs, statuses, and step-level progress.",
-            "Implemented structured logs and clear UI feedback for each run.",
-            "Designed the system to process one job at a time for stability."
-        ],
-        videoSrc: "/videos/jobbot.mov",
     }
 ];
 

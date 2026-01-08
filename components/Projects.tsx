@@ -23,11 +23,11 @@ const projects: Project[] = [
         tech: ["React", "WooCommerce", "ERP"],
     },
     {
-        title: "SwapXe (CryptXe Portal)",
-        description: "Crypto dashboard portal to display API results in a web UI.",
-        image: "/images/swapxe.png",
-        github: "https://github.com/NUMERIQUE-360-ORG/cryptxe_portal",
-        tech: ["Next.js", "Crypto", "API"],
+        title: "Job Application Bot",
+        description: "Automation bot to apply for jobs with a monitoring dashboard.",
+        image: "/images/jobbot.png",
+        github: "https://github.com/Abdul-Razack/Job-Bot",
+        tech: ["Node.js", "Puppeteer", "Express"],
     },
     {
         title: "Crypto Exchange",
@@ -35,13 +35,6 @@ const projects: Project[] = [
         image: "/images/bchain.png",
         github: "https://github.com/Abdul-Razack/Blockchain",
         tech: ["React", "Blockchain", "REST"],
-    },
-    {
-        title: "Job Application Bot",
-        description: "Automation bot to apply for jobs with a monitoring dashboard.",
-        image: "/images/jobbot.png",
-        github: "https://github.com/Abdul-Razack/Job-Bot",
-        tech: ["Node.js", "Puppeteer", "Express"],
     },
     {
         title: "Portfolio Website",
