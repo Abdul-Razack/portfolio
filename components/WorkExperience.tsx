@@ -269,7 +269,7 @@ export default function WorkExperience() {
                                     </ul>
 
                                     <a
-                                        href="/abdul.pdf"
+                                        href="/Abdul_Razack_Frontend_Developer_React_Next_ERP_Dubai.pdf"
                                         download
                                         className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-gray-800 text-white rounded-full text-sm font-medium transition-all hover:bg-black dark:hover:bg-gray-700 hover:scale-105 hover:shadow-lg"
                                     >
