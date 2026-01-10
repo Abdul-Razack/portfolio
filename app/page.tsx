@@ -6,13 +6,12 @@ import WorkExperience from "@/components/WorkExperience";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import ScrollToTop from "@/components/ScrollToTop";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-[#0d1117] text-gray-900 dark:text-[#f0f6fc]">
+    <div className="min-h-screen bg-white dark:bg-[#0d1117] text-gray-900 dark:text-[#f0f6fc]">
       <Navbar />
-      <main className="flex-1 px-6 pt-20 pb-20 max-w-6xl mx-auto space-y-12">
+      <main className="px-6 pt-20 pb-20 max-w-6xl mx-auto space-y-12">
         <Hero />
         <Skills />
         <Projects />
@@ -20,7 +19,6 @@ export default function Home() {
         <Education />
         <Contact />
       </main>
-      <Footer />
       <ScrollToTop />
     </div>
   );

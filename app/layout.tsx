@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   description: "Senior Front-End Developer Portfolio",
 };
 
+import Footer from "@/components/Footer";
+
+// ... existing imports
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,6 +25,7 @@ export default function RootLayout({
       <body className={`${inter.className}`}>
         <ThemeProvider>
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

@@ -38,7 +38,7 @@ export default function Contact() {
                 </p>
             </div>
 
-            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            <div className="max-w-4xl min-w-0 mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                 {/* Contact Information */}
                 <div className="flex flex-col">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-6">
@@ -49,16 +49,16 @@ export default function Contact() {
                     <div className="grid grid-cols-1 gap-3">
                         <a
                             href="mailto:abdulrazackabu2003@gmail.com"
-                            className="flex items-center gap-3 p-3 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-transparent transition-all hover:border-blue-500/30 hover:bg-white dark:hover:bg-gray-800 group"
+                            className="flex items-center gap-3 p-3 min-w-0 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-transparent transition-all hover:border-blue-500/30 hover:bg-white dark:hover:bg-gray-800 group"
                         >
                             <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 group-hover:scale-110 transition-transform">
                                 <Mail size={20} />
                             </div>
-                            <div>
+                            <div className="min-w-0 flex-1">
                                 <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
                                     Email Me
                                 </p>
-                                <p className="text-base font-bold text-gray-900 dark:text-white">
+                                <p className="text-base font-bold text-gray-900 dark:text-white truncate md:whitespace-normal md:overflow-visible">
                                     abdulrazackabu2003@gmail.com
                                 </p>
                             </div>
