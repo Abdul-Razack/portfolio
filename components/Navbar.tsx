@@ -16,7 +16,6 @@ export default function Navbar() {
 
     const links = [
         { name: "Home", href: "#hero" },
-        { name: "About", href: "#hero" },
         { name: "Skills", href: "#skills" },
         { name: "Projects", href: "#projects" },
         { name: "Work Experience", href: "#work-experience" },
@@ -31,6 +30,17 @@ export default function Navbar() {
     const toggleTheme = () => {
         const isDark = resolvedTheme === "dark";
         setTheme(isDark ? "light" : "dark");
+    };
+
+    const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        setIsOpen(false);
+        setTimeout(() => {
+            const element = document.querySelector(href);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 50);
     };
 
     // Scroll Handler
@@ -59,8 +69,8 @@ export default function Navbar() {
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b ${scrolled
-                    ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-md border-gray-200 dark:border-gray-800"
-                    : "bg-white/10 dark:bg-black/10 backdrop-blur-sm border-transparent"
+                ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-md border-gray-200 dark:border-gray-800"
+                : "bg-white/10 dark:bg-black/10 backdrop-blur-sm border-transparent"
                 }`}
         >
             <div className="max-w-6xl mx-auto px-6">
@@ -68,10 +78,17 @@ export default function Navbar() {
                     {/* Logo / Brand */}
                     <div
                         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                        className="flex-shrink-0 cursor-pointer"
+                        className="flex-shrink-0 cursor-pointer select-none leading-tight"
                     >
-                        <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500">
-                            MyPortfolio
+                        <span className="block text-lg md:text-xl font-bold tracking-tight
+                            bg-clip-text text-transparent
+                            bg-gradient-to-r from-violet-500 to-blue-500">
+                            Abdul Razack
+                        </span>
+
+                        <span className="block text-[11px] md:text-xs font-medium tracking-wide
+                            text-slate-400">
+                            Frontend Developer
                         </span>
                     </div>
 
@@ -143,7 +160,7 @@ export default function Navbar() {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={(e) => handleMobileNavClick(e, link.href)}
                                     className="block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 hover:bg-gray-100 hover:text-blue-500 dark:hover:bg-gray-800 dark:hover:text-blue-400"
                                 >
                                     {link.name}

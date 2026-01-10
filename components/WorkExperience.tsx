@@ -41,6 +41,7 @@ const slides: Experience[] = [
             "Designed the system to process one job at a time for stability."
         ],
         videoSrc: "/videos/jobbot.mov",
+        
     },
     {
         key: "aviation",
@@ -73,7 +74,6 @@ const slides: Experience[] = [
 export default function WorkExperience() {
     const sliderRef = useRef<HTMLDivElement>(null);
     const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
     const [showLeft, setShowLeft] = useState(false);
     const [showRight, setShowRight] = useState(true);
     const [hovered, setHovered] = useState(false);
@@ -199,7 +199,7 @@ export default function WorkExperience() {
 
     return (
         <motion.section
-            id="experience"
+            id="work-experience"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
