@@ -45,6 +45,28 @@ const projects: Project[] = [
     },
 ];
 
+function ImageWithSkeleton({ src, alt, className }: { src: string; alt: string; className?: string }) {
+    const [isLoading, setIsLoading] = useState(true);
+
+    return (
+        <>
+            {isLoading && (
+                <div
+                    className="absolute inset-0 z-10 animate-pulse"
+                    style={{ backgroundColor: "color-mix(in srgb, var(--foreground) 10%, transparent)" }}
+                />
+            )}
+            <Image
+                src={src}
+                alt={alt}
+                fill
+                className={`${className} transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
+                onLoad={() => setIsLoading(false)}
+            />
+        </>
+    );
+}
+
 export default function Projects() {
     const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -175,10 +197,9 @@ export default function Projects() {
                             <div className="h-full overflow-hidden bg-white border border-gray-100 rounded-3xl shadow-sm transition-all duration-300 hover:shadow-xl hover:border-blue-400/30 dark:bg-gray-800 dark:border-gray-700 dark:hover:border-blue-400/30">
                                 {/* Project Image Wrapper */}
                                 <div className="group relative aspect-video overflow-hidden">
-                                    <Image
+                                    <ImageWithSkeleton
                                         src={project.image}
                                         alt={project.title}
-                                        fill
                                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
                                     {/* Hover Overlay */}

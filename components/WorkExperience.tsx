@@ -41,7 +41,7 @@ const slides: Experience[] = [
             "Designed the system to process one job at a time for stability."
         ],
         videoSrc: "/videos/jobbot.mov",
-        
+
     },
     {
         key: "aviation",
@@ -70,6 +70,8 @@ const slides: Experience[] = [
         videoSrc: "/videos/blockchain.mov",
     }
 ];
+
+
 
 export default function WorkExperience() {
     const sliderRef = useRef<HTMLDivElement>(null);
@@ -289,7 +291,9 @@ export default function WorkExperience() {
                                             src={current.videoSrc}
                                             muted
                                             loop
+                                            autoPlay
                                             playsInline
+                                            preload="metadata"
                                             className="h-full w-full object-cover"
                                         />
                                         <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-all duration-500 group-hover:bg-black/60">
